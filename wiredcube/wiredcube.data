@@ -1,0 +1,19 @@
+#version 410 core
+
+out vec4 outColor;
+
+void main() { outColor = vec4(0); }
+#version 410 core
+
+layout(location = 0) in vec3 inPosition;
+
+uniform Matrices {
+  mat4 model;
+  mat4 view;
+  mat4 projection;
+}
+mat;
+
+void main() {
+  gl_Position = mat.projection * mat.view * mat.model * vec4(inPosition, 1.0);
+}

@@ -1,0 +1,58 @@
+#version 410 core
+
+layout(location = 0) in vec3 inPosition;
+layout(location = 1) in vec3 inNormal;
+
+uniform Matrices {
+  mat4 model;
+  mat4 view;
+  mat4 projection;
+}
+mat;
+
+uniform mat3 normalMatrix;
+uniform vec4 backgroundColor;
+uniform float fadeParameter;
+
+// Light intensities
+vec4 Ia = vec4(1.0, 1.0, 1.0, 1.0);
+vec4 Id1 = vec4(0.98, 0.72, 0.40, 1.0);
+vec4 Id2 = vec4(0.33, 0.67, 0.83, 1.0);
+
+// Material coefficients
+vec4 Ka = vec4(0.1, 0.0, 0.0, 1.0);
+vec4 Kd = vec4(1.0, 1.0, 1.0, 1.0);
+
+out vec4 fragColor;
+
+void main() {
+  vec3 N = normalMatrix * inNormal;
+
+  vec3 eyePosition = (mat.view * mat.model * vec4(inPosition, 1.0)).xyz;
+  vec4 NDCPosition = mat.projection * vec4(eyePosition, 1.0);
+  gl_Position = NDCPosition;
+
+  vec4 lightPosition1 = mat.view * mat.model * vec4(10, 9, 8, 1);
+  vec3 L1 = normalize(lightPosition1.xyz - eyePosition);
+
+  vec4 lightPosition2 = mat.view * mat.model * vec4(-8, -9, -10, 1);
+  vec3 L2 = normalize(lightPosition2.xyz - eyePosition);
+
+  // Blinn-Phong
+  vec4 diffuseColor1 = Kd * Id1 * max(dot(N, L1), 0.0);
+  vec4 diffuseColor2 = Kd * Id2 * max(dot(N, L2), 0.0);
+  vec4 ambientColor = Ka * Ia;
+  vec4 finalColor = ambientColor + diffuseColor1 + diffuseColor2;
+
+  float fogAmount = clamp(log((NDCPosition.z + 1.0) / 2.0), 0.0, 1.0);
+
+  fragColor =
+      mix(mix(finalColor, backgroundColor, fogAmount), vec4(1), fadeParameter);
+}
+#version 410 core
+
+in vec4 fragColor;
+
+out vec4 outColor;
+
+void main() { outColor = fragColor; }
