@@ -21,20 +21,6 @@
       border-radius: 6px;
     }
 
-    textarea.emscripten {
-      resize: none;
-      margin: 6px auto;
-      border: 0px none;
-      padding: 6px;
-      font-family: monospace;
-      font-stretch: condensed;
-      font-size: small;
-      width: 658px;
-      border-radius: 6px;
-      background: #e7e8ea;
-      overflow: visible;
-    }
-
     div.emscripten {
       text-align: center;
     }
@@ -44,7 +30,7 @@
     canvas.emscripten {      
       border: 0px none;
       background-color: #00000000;
-      width: 670px;
+      width: 600px;
       height: 600px;
 
       image-rendering: optimizeSpeed;
@@ -153,7 +139,6 @@
   <div class="emscripten">
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="display: none !important;"></canvas>
   </div>
-  <textarea class="emscripten" id="output" rows="6" style="display: none !important;"></textarea>
 
   <script type='text/javascript'>
     function isMobile() {
@@ -187,7 +172,6 @@
     var statusElement = document.getElementById('status');
     var progressElement = document.getElementById('progress');
     var spinnerElement = document.getElementById('spinner');
-    var outputElement = document.getElementById('output');
 
     var Module = {
       preRun: [],
@@ -241,7 +225,6 @@
           progressElement.max = parseInt(m[4]) * 100;
           progressElement.hidden = false;
           spinnerElement.hidden = false;
-          outputElement.style.display = "none";
           canvas.style.display = "none";          
         } else {
           progressElement.value = null;
@@ -249,7 +232,6 @@
           progressElement.hidden = true;
           canvas.style.display = "block";          
           if (!text) {
-            outputElement.style.display = "block";
             spinnerElement.hidden = true;
           }
         }
