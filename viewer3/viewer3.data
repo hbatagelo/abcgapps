@@ -65552,6 +65552,7 @@ uniform vec4 Ka, Kd, Ks;
 out vec4 fragColor;
 
 vec4 Phong(vec3 N, vec3 L, vec3 V) {
+  N = normalize(N);
   L = normalize(L);
 
   // Compute lambertian term
@@ -89192,6 +89193,7 @@ uniform vec4 Ka, Kd, Ks;
 out vec4 outColor;
 
 vec4 BlinnPhong(vec3 N, vec3 L, vec3 V) {
+  N = normalize(N);
   L = normalize(L);
 
   // Compute lambertian term
@@ -89315,6 +89317,7 @@ uniform vec4 Ka, Kd, Ks;
 out vec4 outColor;
 
 vec4 Phong(vec3 N, vec3 L, vec3 V) {
+  N = normalize(N);
   L = normalize(L);
 
   // Compute lambertian term

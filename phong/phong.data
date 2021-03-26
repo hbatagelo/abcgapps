@@ -1,0 +1,66 @@
+#version 410
+
+in vec3 fragN;
+in vec3 fragL;
+in vec3 fragV;
+
+// Light properties
+uniform vec4 Ia, Id, Is;
+uniform float shininess;
+
+// Material properties
+uniform vec4 Ka, Kd, Ks;
+
+out vec4 outColor;
+
+vec4 BlinnPhong(vec3 N, vec3 L, vec3 V) {
+  N = normalize(N);
+  L = normalize(L);
+
+  // Compute lambertian term
+  float lambertian = max(dot(N, L), 0.0);
+
+  // Compute specular term
+  float specular = 0.0;
+  if (lambertian > 0.0) {
+    V = normalize(V);
+    vec3 H = normalize(L + V);
+    float angle = max(dot(H, N), 0.0);
+    specular = pow(angle, shininess);
+  }
+
+  vec4 diffuseColor = Kd * Id * lambertian;
+  vec4 specularColor = Ks * Is * specular;
+  vec4 ambientColor = Ka * Ia;
+
+  return ambientColor + diffuseColor + specularColor;
+}
+
+void main() { outColor = BlinnPhong(fragN, fragL, fragV); }
+#version 410
+
+layout(location = 0) in vec3 inPosition;
+layout(location = 1) in vec3 inNormal;
+
+uniform mat4 modelMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 projMatrix;
+uniform mat3 normalMatrix;
+
+uniform vec4 lightDirWorldSpace;
+
+out vec3 fragV;
+out vec3 fragL;
+out vec3 fragN;
+
+void main() {
+  vec3 P = (viewMatrix * modelMatrix * vec4(inPosition, 1.0)).xyz;
+  vec3 N = normalMatrix * inNormal;
+  vec3 L = -(viewMatrix * lightDirWorldSpace).xyz;
+
+  fragL = L;
+  fragV = -P;
+  fragN = N;
+
+  gl_Position = projMatrix * vec4(P, 1.0);
+}
