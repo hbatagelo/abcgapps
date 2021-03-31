@@ -65544,10 +65544,10 @@ uniform mat3 normalMatrix;
 // Light properties
 uniform vec4 lightDirWorldSpace;
 uniform vec4 Ia, Id, Is;
-uniform float shininess;
 
 // Material properties
 uniform vec4 Ka, Kd, Ks;
+uniform float shininess;
 
 out vec4 fragColor;
 
@@ -89185,10 +89185,10 @@ in vec3 fragV;
 
 // Light properties
 uniform vec4 Ia, Id, Is;
-uniform float shininess;
 
 // Material properties
 uniform vec4 Ka, Kd, Ks;
+uniform float shininess;
 
 out vec4 outColor;
 
@@ -89309,10 +89309,10 @@ in vec3 fragV;
 
 // Light properties
 uniform vec4 Ia, Id, Is;
-uniform float shininess;
 
 // Material properties
 uniform vec4 Ka, Kd, Ks;
+uniform float shininess;
 
 out vec4 outColor;
 
