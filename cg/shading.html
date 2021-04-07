@@ -358,6 +358,24 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>10</b> Texturização</a><ul>
+<li class="chapter" data-level="10.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>10.1</b> Mapeamento</a><ul>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>10.2</b> Empacotamento</a></li>
+<li class="chapter" data-level="10.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>10.3</b> Filtragem</a><ul>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>10.4</b> Texturização na prática</a><ul>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#gerando-texturas"><i class="fa fa-check"></i>Gerando texturas</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -383,7 +401,7 @@ code span.wa { font-style: italic; } /* Warning */
             <section class="normal" id="section-">
 <div id="shading" class="section level2">
 <h2><span class="header-section-number">9.4</span> Sombreamento</h2>
-<p>Sombreamento ou tonalização (do inglês <em>shading</em>) é o processo de modificar a intensidade dos pixels de uma imagem usando tons claros e escuros, de modo a produzir a percepção de volume e profundidade de um objeto tridimensional.</p>
+<p>Sombreamento ou tonalização (do inglês <em>shading</em>) é o processo de modificar a intensidade das cores de uma imagem através de tons claros e escuros, de modo a produzir a percepção de volume e profundidade de um objeto tridimensional.</p>
 <p>Em computação gráfica, as intensidades de cor calculadas através do modelo de iluminação são utilizadas para fazer o sombreamento da geometria projetada.</p>
 <p>Há três modelos de sombreamento comumente utilizados:</p>
 <ul>
@@ -399,7 +417,7 @@ code span.wa { font-style: italic; } /* Warning */
   src="https://hbatagelo.github.io/abcgapps/flat/index.html"
   frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="530" scrolling="no"
   ></iframe>
-<p>Uma vantagem do sombreamento flat é a eficiência. O número de vezes que a equação do modelo de ilumuninação é avaliada depende apenas do número de faces que, em geral, é menor que o número de pixels.</p>
+<p>Uma vantagem do sombreamento flat é a eficiência. O número de vezes que a equação do modelo de ilumninação é avaliada depende apenas do número de faces que, em geral, é menor que o número de pixels.</p>
 <p>No sombreamento flat, as descontinuidades da iluminação sobre a superfície ficam bem evidentes e o resultado é um aspecto facetado da malha poligonal. Isso pode ser desejável caso o objeto visualizado seja um poliedro. Entretanto, se a malha geométrica for a aproximação de uma superfície suave, o resultado só será satisfatório se a malha for subdividida em faces menores.</p>
 <p>No exemplo acima, a malha triangular é uma aproximação de uma esfera. Experimente aumentar o número de subdivisões e observe como as descontinuidades de luz entre as faces são atenuadas.</p>
 <p>Atualmente, não há melhoramento de eficiência de renderização com a implementação do sombreamento flat na GPU, pois o pipeline gráfico atual é otimizado para o processamento de atributos de vértices, e não atributos de triângulos.</p>
