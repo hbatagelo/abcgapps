@@ -375,6 +375,15 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a><ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a><ul>
+<li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html"><i class="fa fa-check"></i>Atividade 1</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -805,9 +814,9 @@ M_{\textrm{normal}}=\left((M_{\textrm{view}}M_{\textrm{model}})^{-1}\right)^{T}.
 <h3>normal.vert</h3>
 <p>Este shader converte as coordenadas do vetor normal de vértice em uma cor RGB.</p>
 <p>Em muitos casos, é mais fácil visualizar a direção de vetores normais através de cores do que através do desenho de setas que saem dos vértices. Se o modelo tiver muitos vértices, as setas cobrirão todo o objeto e não conseguiremos distinguir um vetor de outro. Isso é ainda mais importante se quisermos observar os vetores normais calculados para cada fragmento.</p>
-<p>As coordenadas <span class="math inline">\((x, y, z)\)</span> de um vetor unitário estão no intervalo <span class="math inline">\([-1,1]\)</span>. Uma cor RGB tem componentes no intervalo <span class="math inline">\([0,1]\)</span>. Logo, a conversão das coordenadas em cores é um simples mapeamento linear de <span class="math inline">\([-1,1]\)</span> para <span class="math inline">\([0,1]\)</span>:</p>
+<p>As coordenadas <span class="math inline">\((x, y, z)\)</span> de um vetor unitário estão no intervalo <span class="math inline">\([-1,1]\)</span>. Uma cor RGB tem componentes <span class="math inline">\((r, g, b)\)</span> no intervalo <span class="math inline">\([0,1]\)</span>. Logo, a conversão das coordenadas em cores é um simples mapeamento linear de <span class="math inline">\([-1,1]\)</span> para <span class="math inline">\([0,1]\)</span>:</p>
 <p><span class="math display">\[
-\textrm{R} = \frac{x+1}{2}, \qquad \textrm{G} = \frac{y+1}{2}, \qquad \textrm{B} = \frac{z+1}{2}.
+r = \frac{x+1}{2}, \qquad g = \frac{y+1}{2}, \qquad b = \frac{z+1}{2}.
 \]</span></p>
 <p>Assim, se o vetor normal tiver coordenadas <span class="math inline">\((1,0,0)\)</span> (direção do eixo <span class="math inline">\(x\)</span> positivo), o resultado será um tom próximo ao vermelho <span class="math inline">\((1, 0.5, 0.5)\)</span>. Se o vetor normal tiver coordenadas <span class="math inline">\((0,1,0)\)</span> (direção de <span class="math inline">\(y\)</span> positivo), o resultado será um tom próximo ao verde <span class="math inline">\((0.5, 1, 0.5)\)</span>. Se tiver coordenadas <span class="math inline">\((0,0,1)\)</span> (direção de <span class="math inline">\(z\)</span> positivo), terá um tom próximo ao azul <span class="math inline">\((0.5, 0.5, 1)\)</span>. Essa convenção de cores é a mesma que temos utilizado nas ilustrações dos eixos principais em todas as figuras. A figura <a href="viewer2.html#fig:normalcolors">9.20</a> mostra as cores correspondentes para as direções <span class="math inline">\(\pm x\)</span>, <span class="math inline">\(\pm y\)</span> e <span class="math inline">\(\pm z\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:normalcolors"></span>

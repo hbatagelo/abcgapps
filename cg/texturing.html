@@ -375,6 +375,15 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a><ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a><ul>
+<li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html"><i class="fa fa-check"></i>Atividade 1</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -410,7 +419,7 @@ code span.wa { font-style: italic; } /* Warning */
 Figura 10.1: Mapeamento de textura sobre uma esfera.
 </p>
 </div>
-<p>No mapeamento da figura <a href="texturing.html#fig:texturing6">10.1</a>, cada ponto <span class="math inline">\((x,y,z) \in \mathbb{R}^3\)</span> da esfera unitária centralizada na origem, com os polos atravessando o eixo <span class="math inline">\(y\)</span> corresponde a um ponto <span class="math inline">\((u,v) \in \mathbb{R}^2\)</span> do espaço da textura. O mapeamento realizado é um <strong>mapeamento esférico</strong>, definido pelas equações</p>
+<p>No mapeamento da figura <a href="texturing.html#fig:texturing6">10.1</a>, cada ponto <span class="math inline">\((x,y,z) \in \mathbb{R}^3\)</span> da esfera unitária centralizada na origem, com os polos atravessando o eixo <span class="math inline">\(y\)</span>, corresponde a um ponto <span class="math inline">\((u,v) \in \mathbb{R}^2\)</span> do espaço da textura. O mapeamento realizado é um <strong>mapeamento esférico</strong>, definido pelas equações</p>
 <p><span class="math display">\[
 \begin{align}
 u&amp;=\frac{\textrm{arctan2}\left(x, z\right)}{2\pi}+0.5,\\
