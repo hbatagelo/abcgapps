@@ -117357,11 +117357,6 @@ Name: Utah Teapot
 Author: Martin Newell
 License: CC0 (https://creativecommons.org/share-your-work/public-domain/cc0/)
 
-Files: viking_room*, maps/viking_room.jpg
-Name: Viking room
-Author: nigelgoh (https://sketchfab.com/nigelgoh)
-License: CC BY 4.0 (http://creativecommons.org/licenses/by/4.0/)
-
 brick_*.jpg from https://texturebox.com/
 #version 410
 
@@ -117395,7 +117390,7 @@ uniform int mappingMode;
 
 out vec4 outColor;
 
-// Compute matrix to convert from object space to tangent space
+// Compute matrix to transform from camera space to tangent space
 mat3 ComputeTBN(vec3 TObj, vec3 BObj, vec3 NObj) {
   vec3 TEye = normalMatrix * normalize(TObj);
   vec3 BEye = normalMatrix * normalize(BObj);
@@ -117500,7 +117495,8 @@ void main() {
   if (mappingMode == 0) {
     // Triplanar mapping
 
-    vec3 offset = vec3(0.5, 0.5, 0.5);
+    // A offset to center the texture around the origin
+    vec3 offset = vec3(-0.5, -0.5, -0.5);
 
     // Sample with x planar mapping
     vec2 texCoord1 = PlanarMappingXUV(fragPObj + offset);
@@ -117897,16 +117893,19 @@ void main() {
   if (mappingMode == 0) {
     // Triplanar mapping
 
+    // A offset to center the texture around the origin
+    vec3 offset = vec3(-0.5, -0.5, -0.5);
+
     // Sample with x planar mapping
-    vec2 texCoord1 = PlanarMappingX(fragPObj);
+    vec2 texCoord1 = PlanarMappingX(fragPObj + offset);
     vec4 color1 = BlinnPhong(fragN, fragL, fragV, texCoord1);
 
     // Sample with y planar mapping
-    vec2 texCoord2 = PlanarMappingY(fragPObj);
+    vec2 texCoord2 = PlanarMappingY(fragPObj + offset);
     vec4 color2 = BlinnPhong(fragN, fragL, fragV, texCoord2);
 
     // Sample with z planar mapping
-    vec2 texCoord3 = PlanarMappingZ(fragPObj);
+    vec2 texCoord3 = PlanarMappingZ(fragPObj + offset);
     vec4 color3 = BlinnPhong(fragN, fragL, fragV, texCoord3);
 
     // Compute average based on normal
