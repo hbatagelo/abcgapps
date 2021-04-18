@@ -381,6 +381,11 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
 <li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
 </ul></li>
+<li class="chapter" data-level="10.6" data-path="envmapping.html"><a href="envmapping.html"><i class="fa fa-check"></i><b>10.6</b> Mapeamento de ambiente</a><ul>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-esférico-1"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-cúbico"><i class="fa fa-check"></i>Mapeamento cúbico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a><ul>
 <li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html"><i class="fa fa-check"></i>Atividade 1</a></li>
@@ -410,7 +415,7 @@ code span.wa { font-style: italic; } /* Warning */
             <section class="normal" id="section-">
 <div id="texwrapping" class="section level2">
 <h2><span class="header-section-number">10.2</span> Empacotamento</h2>
-<p>No OpenGL, o modo de empacotamento da textura (em inglês, <em>texture wrapping</em>) define o comportamento do amostrador de textura quando as coordenadas de textura estão fora do intervalo <span class="math inline">\([0, 1]\)</span>. Há três comportamentos principais:</p>
+<p>No OpenGL, o modo de empacotamento da textura (em inglês, <em>texture wrapping</em>) define o comportamento do amostrador de textura quando as coordenadas <span class="math inline">\((u,v)\)</span> estão fora do intervalo <span class="math inline">\([0, 1]\)</span>. Há três comportamentos principais:</p>
 <ul>
 <li><code>GL_REPEAT</code>: repete a textura fora do intervalo. Esse é o modo padrão de empacotamento.</li>
 <li><code>GL_MIRRORED_REPEAT</code>: igual ao anterior, mas a textura é espelhada em <span class="math inline">\(u\)</span> e/ou <span class="math inline">\(v\)</span> quando a parte inteira da coordenada é um número ímpar.</li>
@@ -423,7 +428,7 @@ code span.wa { font-style: italic; } /* Warning */
 Figura 10.13: Modos de empacotamento do OpenGL.
 </p>
 </div>
-<p>O modo de repetição (<code>GL_REPEAT</code>) é frequentemente utilizado para produzir padrões formados por texturas ininterruptas (<em>seamless textures</em>). Essas texturas, quando dispostas lado a lado ou em um padrão de ladrilho, formam um padrão contínuo. Um exemplo é mostrado na figura <a href="texwrapping.html#fig:texturing4">10.14</a>.</p>
+<p>O modo de repetição (<code>GL_REPEAT</code>) é frequentemente utilizado para produzir padrões formados por texturas ininterruptas (<em>seamless textures</em>). Essas texturas, quando dispostas lado a lado ou como um ladrilho, formam um padrão contínuo. Um exemplo é mostrado na figura <a href="texwrapping.html#fig:texturing4">10.14</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:texturing4"></span>
 <img src="images/10_texturing4.png" alt="Textura ininterrupta com empacotamento `GL_REPEAT` (adaptado do [original](https://commons.wikimedia.org/wiki/File:797_-_Ancient_Greece_Vase_-_Seamless_Pattern.jpg))."  />
 <p class="caption">

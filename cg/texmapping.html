@@ -381,6 +381,11 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
 <li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
 </ul></li>
+<li class="chapter" data-level="10.6" data-path="envmapping.html"><a href="envmapping.html"><i class="fa fa-check"></i><b>10.6</b> Mapeamento de ambiente</a><ul>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-esférico-1"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-cúbico"><i class="fa fa-check"></i>Mapeamento cúbico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a><ul>
 <li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html"><i class="fa fa-check"></i>Atividade 1</a></li>
@@ -437,7 +442,7 @@ Figura 10.3: Mapeamento planar na direção x sobre um cubo unitário.
 </p>
 </div>
 <p>Observe como o lado de cima e lado esquerdo do cubo repetem, respectivamente, a cor dos texels com <span class="math inline">\(v=1\)</span> e <span class="math inline">\(u=0\)</span> (a mudança de tom é resultado da iluminação). Isso acontece porque todos os pontos ao longo de uma reta na direção <span class="math inline">\(x\)</span> são mapeados para um mesmo texel.</p>
-<p>Um <strong>mapeamento planar na direção de <span class="math inline">\(y\)</span></strong> pode ser definido como:</p>
+<p>Um <strong>mapeamento planar na direção do eixo <span class="math inline">\(y\)</span></strong> pode ser definido como:</p>
 <p><span class="math display">\[
 \begin{align}
 u&amp;=x,\\
@@ -451,7 +456,7 @@ A figura <a href="texmapping.html#fig:texturing12">10.4</a> mostra o resultado d
 Figura 10.4: Mapeamento planar na direção y sobre um cubo unitário.
 </p>
 </div>
-<p>Um <strong>mapeamento planar na direção de <span class="math inline">\(z\)</span></strong> pode ser definido como:</p>
+<p>Um <strong>mapeamento planar na direção do eixo <span class="math inline">\(z\)</span></strong> pode ser definido como:</p>
 <p><span class="math display">\[
 \begin{align}
 u&amp;=x,\\
@@ -469,7 +474,7 @@ Figura 10.5: Mapeamento planar na direção z sobre um cubo unitário.
 <p><span class="math display">\[
 (u_x,v_x),\qquad(u_y,v_y),\qquad(u_z,v_z),
 \]</span></p>
-<p>e então combinar o valor dos texels amostrados com essas coordenadas, de acordo com algum critério de combinação. Um critério simples é calcular uma média ponderada dos texels. Os pesos da média podem ser as coordenadas <span class="math inline">\((n_x, n_y, n_z)\)</span> do vetor normal normalizado, em valor absoluto. Por exemplo, seja <span class="math inline">\(T(u,v)\)</span> o texel amostrado na posição <span class="math inline">\((u,v)\)</span> do espaço de textura. Então, o texel final do mapeamento triplanar será calculado como.</p>
+<p>e então combinar o valor dos texels amostrados com essas coordenadas de acordo com algum critério de combinação. Um critério simples é calcular uma média ponderada dos texels. Os pesos da média podem ser as coordenadas <span class="math inline">\((n_x, n_y, n_z)\)</span> do vetor normal normalizado, em valor absoluto. Por exemplo, seja <span class="math inline">\(T(u,v)\)</span> o texel amostrado na posição <span class="math inline">\((u,v)\)</span> do espaço de textura. Então, o texel final do mapeamento triplanar pode ser calculado como</p>
 <p><span class="math display">\[
 T(u_x, v_x)|n_x| + T(u_y, v_y)|n_y| + T(u_z, v_z)|n_z|.
 \]</span></p>
@@ -521,7 +526,7 @@ Logo,</p>
  \text{indefinido} &amp;\text{se } p_z = 0 \text{ e } p_x = 0.
 \end{cases}
 \]</span></p>
-<p>A função <span class="math inline">\(\operatorname{atan2}\)</span> está presente na biblioteca matemática das principais linguagens de programação. Por exemplo, na biblioteca padrão do C++, a função é implementada por <a href="https://en.cppreference.com/w/cpp/numeric/math/atan2"><code>std::atan2</code></a>. Em GLSL, a função é <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/atan.xhtml"><code>atan</code></a> e recebe dois parâmetros (a função com um parâmetro é a função arco tangente convencional).</p>
+<p>A função <span class="math inline">\(\operatorname{atan2}\)</span> está presente nas bibliotecas matemáticas das principais linguagens de programação. Por exemplo, na biblioteca padrão do C++, a função é implementada por <a href="https://en.cppreference.com/w/cpp/numeric/math/atan2"><code>std::atan2</code></a>. Em GLSL, a função é <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/atan.xhtml"><code>atan</code></a> e recebe dois parâmetros (a função com um parâmetro é a função arco tangente convencional).</p>
 <p>A conversão de <span class="math inline">\(\theta \in (-\pi, \pi]\)</span> para <span class="math inline">\(u \in (0,1]\)</span> é obtida com o mapeamento linear:</p>
 <p><span class="math display">\[
 u = \frac{\theta}{2\pi}+0.5.
@@ -590,7 +595,7 @@ v&amp;=\frac{\arcsin\left(\dfrac{p_y}{|\mathbf{p}|}\right)}{\pi}+0.5,
 <h3>Mapeamento UV unwrap</h3>
 <p>É possível definir diretamente as coordenadas <span class="math inline">\((u,v)\)</span> de cada vértice da malha geométrica através da inclusão de um atributo adicional de vértice, de forma semelhante como fizemos para a definição de cores nos vértices ou normais de vértices. Durante a rasterização, as coordenadas de textura definidas nos vértices são interpoladas para cada fragmento da primitiva. Assim, cada fragmento tem coordenadas de textura interpoladas e a textura pode então ser amostrada no fragment shader.</p>
 <p>Para determinar as coordenadas <span class="math inline">\((u,v)\)</span> de cada vértice de uma malha poligonal, técnicas de modelagem geométrica podem ser utilizadas para “desdobrar” a malha sobre o plano da textura, em um processo chamado de <strong>UV unwrap</strong> ou <strong>desdobramento UV</strong>.</p>
-<p>A figura <a href="texmapping.html#fig:texturing7">10.11</a> mostra um exemplo de objeto 3D renderizado com mapeamento UV unwrap. O objeto é uma <a href="https://www.britishmuseum.org/collection/object/G_1856-1226-472">lâmpada à óleo romana</a> do acervo do <a href="https://www.britishmuseum.org">Museu Britânico</a>. O <a href="https://sketchfab.com/3d-models/lamp-roman-27b4f79643cb40ae8cdde5d5a9adebf1">modelo original</a> tem 500 mil triângulos e foi adquirido por um scanner 3D. Aqui, o modelo exibido tem apenas 10 mil triângulos para facilitar a visualização do mapeamento no sistema de coordenadas de textura. Observe, no mapa UV, como a malha é desdobrada em diferentes pedaços para ser mapeada sem sobreposições sobre o plano. O mapeamento procura manter a proporção entre a área dos polígonos originais de modo que a densidade dos texels amostrados na superfície seja a mais uniforme possível.</p>
+<p>A figura <a href="texmapping.html#fig:texturing7">10.11</a> mostra um exemplo de objeto 3D renderizado com mapeamento UV unwrap. O objeto é uma <a href="https://www.britishmuseum.org/collection/object/G_1856-1226-472">lâmpada à óleo romana</a> do acervo do <a href="https://www.britishmuseum.org">Museu Britânico</a>. O <a href="https://sketchfab.com/3d-models/lamp-roman-27b4f79643cb40ae8cdde5d5a9adebf1">modelo original</a> tem 500 mil triângulos e foi adquirido por um scanner 3D. Aqui, o modelo exibido tem apenas 10 mil triângulos para facilitar a visualização do mapeamento no sistema de coordenadas de textura. Observe, no mapa UV, como a malha é recortada em diferentes pedaços para ser desdobrada sem sobreposições sobre o plano. O mapeamento procura manter a proporção entre a área dos polígonos originais de modo que a densidade dos texels amostrados na superfície seja a mais uniforme possível.</p>
 <div class="figure" style="text-align: center"><span id="fig:texturing7"></span>
 <img src="images/10_texturing7.png" alt="Mapeamento UV."  />
 <p class="caption">

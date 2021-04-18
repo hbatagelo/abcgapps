@@ -45,6 +45,10 @@ p.flushright {
   text-align: right;
 }
 
+.book .book-body .page-wrapper .page-inner section.normal table {
+ width:40%;
+}
+
 /******************************************************************************
 Resizable iframe
 */
