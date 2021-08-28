@@ -21,17 +21,31 @@
       border-radius: 6px;
     }
 
+    textarea.emscripten {
+      resize: none;
+      margin: 6px auto;
+      border: 0px none;
+      padding: 6px;
+      font-family: monospace;
+      font-stretch: condensed;
+      font-size: small;
+      width: 658px;
+      border-radius: 6px;
+      background: #e7e8ea;
+      overflow: visible;
+    }
+
     div.emscripten {
       text-align: center;
     }
 
     /* div.emscripten_border { border: 1px solid black; } */
     /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-    canvas.emscripten {      
+    canvas.emscripten {
       border: 0px none;
       background-color: #00000000;
-      width: 690px;
-      height: 300px;
+      width: 670px;
+      height: 600px;
 
       image-rendering: optimizeSpeed;
       image-rendering: -moz-crisp-edges;
@@ -130,15 +144,17 @@
 <body>
   <figure style="overflow:visible;" id="spinner">
     <div class="spinner"></div>
-    <center style="margin-top:0.5em"><strong>MCTA008-17</strong></center>
+    <center style="margin-top:0.5em"><strong>Hello, World!</strong></center>
   </figure>
   <div class="emscripten" id="status">Downloading...</div>
   <div class="emscripten">
     <progress value="50" max="100" id="progress" hidden=1></progress>
   </div>
   <div class="emscripten">
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="display: none !important;"></canvas>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"
+      style="display: none !important;"></canvas>
   </div>
+  <textarea class="emscripten" id="output" rows="6" style="display: none !important;"></textarea>
 
   <script type='text/javascript'>
     function isMobile() {
@@ -148,7 +164,7 @@
     var canvas = document.getElementById('canvas');
 
     function addErrorMessage(msg) {
-      document.getElementById('msgs').innerHTML += ('<br><font color="red">' + msg + '</font>');
+      document.getElementById('output').innerHTML += ('<br><font color="red">' + msg + '</font>');
     }
 
     // Setup fullscreen API functions for cross-browser support
@@ -158,7 +174,10 @@
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         canvas.focus();
-        canvas.requestFullscreen();
+        canvas.requestFullscreen();//.catch(err => {
+        //addErrorMessage(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        //alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        //});
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -169,6 +188,7 @@
     var statusElement = document.getElementById('status');
     var progressElement = document.getElementById('progress');
     var spinnerElement = document.getElementById('spinner');
+    var outputElement = document.getElementById('output');
 
     var Module = {
       preRun: [],
@@ -178,6 +198,11 @@
         if (element) element.value = ''; // clear browser cache
         return function (text) {
           if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          // These replacements are necessary if you render to raw HTML
+          //text = text.replace(/&/g, "&amp;");
+          //text = text.replace(/</g, "&lt;");
+          //text = text.replace(/>/g, "&gt;");
+          //text = text.replace('\n', '<br>', 'g');
           console.log(text);
           if (element) {
             element.value += text + "\n";
@@ -187,11 +212,18 @@
       })(),
       printErr: function (text) {
         if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-        console.error(text);
+        if (0) { // XXX disabled for safety typeof dump == 'function') {
+          dump(text + '\n'); // fast, straight to the real console
+        } else {
+          console.error(text);
+        }
       },
       canvas: (function () {
         var canvas = document.getElementById('canvas');
 
+        // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+        // application robust, you may want to override this behavior before shipping!
+        // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
         canvas.addEventListener("webglcontextlost", function (e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
 
         return canvas;
@@ -210,13 +242,15 @@
           progressElement.max = parseInt(m[4]) * 100;
           progressElement.hidden = false;
           spinnerElement.hidden = false;
-          canvas.style.display = "none";          
+          outputElement.style.display = "none";
+          canvas.style.display = "none";
         } else {
           progressElement.value = null;
           progressElement.max = null;
           progressElement.hidden = true;
-          canvas.style.display = "block";          
+          canvas.style.display = "block";
           if (!text) {
+            outputElement.style.display = "block";
             spinnerElement.hidden = true;
             canvas.style.backgroundColor = "#00000000";
           }

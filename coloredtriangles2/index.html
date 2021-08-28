@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
 
   <title>Colored Triangles</title>
   <style>
@@ -27,7 +28,7 @@
 
     /* div.emscripten_border { border: 1px solid black; } */
     /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-    canvas.emscripten {      
+    canvas.emscripten {
       border: 0px none;
       background-color: #00000000;
       width: 600px;
@@ -137,7 +138,8 @@
     <progress value="50" max="100" id="progress" hidden=1></progress>
   </div>
   <div class="emscripten">
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="display: none !important;"></canvas>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"
+      style="display: none !important;"></canvas>
   </div>
 
   <script type='text/javascript'>
@@ -148,7 +150,7 @@
     var canvas = document.getElementById('canvas');
 
     function addErrorMessage(msg) {
-      document.getElementById('msgs').innerHTML += ('<br><font color="red">' + msg + '</font>');
+      document.getElementById('output').innerHTML += ('<br><font color="red">' + msg + '</font>');
     }
 
     // Setup fullscreen API functions for cross-browser support
@@ -210,12 +212,12 @@
           progressElement.max = parseInt(m[4]) * 100;
           progressElement.hidden = false;
           spinnerElement.hidden = false;
-          canvas.style.display = "none";          
+          canvas.style.display = "none";
         } else {
           progressElement.value = null;
           progressElement.max = null;
           progressElement.hidden = true;
-          canvas.style.display = "block";          
+          canvas.style.display = "block";
           if (!text) {
             spinnerElement.hidden = true;
           }
