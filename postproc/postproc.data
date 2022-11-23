@@ -64869,8 +64869,7 @@ out vec4 outColor;
 // Gets distance between points in the coord space and the center of that space
 // @param  coord coordinate space to caculate distance to center
 // @return distance from center of plane (0 in center, -1 and 1 at edges)
-float getCenterDistance(vec2 coord)
-{
+float getCenterDistance(vec2 coord) {
   // Difference between point on screen and the center with -1 and 1 at either edge
   return distance(coord, vec2(0.5)) * 2.0; 
 }
@@ -64880,8 +64879,7 @@ float getCenterDistance(vec2 coord)
 // @param	sourceCoord source coordinate space to caculate distance to center
 // @param bulgeAmount amount to bulge coordindates
 // @return distorted sample coordinates
-vec2 bulgeCoords(vec2 coord, vec2 sourceCoord, float bulgeAmount)
-{ 
+vec2 bulgeCoords(vec2 coord, vec2 sourceCoord, float bulgeAmount) { 
   float centerDist = getCenterDistance(sourceCoord);
 
   coord.xy -= vec2(0.5); // Reposition so scaling performed from center of image
@@ -64897,16 +64895,14 @@ vec2 bulgeCoords(vec2 coord, vec2 sourceCoord, float bulgeAmount)
 // @param p point coordinates
 // @bounds bounds box half width (x) and half height (y)
 // @return signed distance from box
-float sdBox(vec2 coord, vec2 bounds)
-{
+float sdBox(vec2 coord, vec2 bounds) {
   vec2 d = abs(coord) - bounds;
   return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
 }
 
 // Returns 1 if coord is in [0+border,1-border], 0 if outside [0,1], and a 
 // smooth step in between
-float wrapFalloff(vec2 coord)
-{ 
+float wrapFalloff(vec2 coord) { 
   const float border = 0.03;
   const float strength = 25.0;
   return clamp(sdBox(coord - vec2(0.5), vec2(0.5 - border)) * strength, 0.0, 1.0);
@@ -64918,8 +64914,7 @@ float wrapFalloff(vec2 coord)
 // @param amount amount to offset Green and Blue channels (B offset twice as far from R)
 // @param power bias of color aberration just towards edges of view (>= 1)
 // @return resultant sample color with color RGB aberration
-vec4 sampleRGBVignette(vec2 coord, vec2 sourceCoord, float amount, float power)
-{
+vec4 sampleRGBVignette(vec2 coord, vec2 sourceCoord, float amount, float power) {
   float centerDist = getCenterDistance(sourceCoord);
   // Bias distance from center to ramp up steeper towards edges
   centerDist = pow(centerDist, power); 
@@ -64952,8 +64947,7 @@ vec4 sampleRGBVignette(vec2 coord, vec2 sourceCoord, float amount, float power)
 // @param power bias of illuminated scan lines to gaps (> 1 = wider bright lights, < 1 wider gaps)
 // @param drift speed of vertical drift in line positions (loops per second)
 // @return resultant color with scan line gaps applied
-vec4 applyScanLines(vec4 color, vec2 coord, float number, float amount, float power, float drift)
-{
+vec4 applyScanLines(vec4 color, vec2 coord, float number, float amount, float power, float drift) {
   // Animate scrolling coordinates (great for shifting moire effects with high number of lines)
   coord.y += uTime * drift; 
 
@@ -64975,8 +64969,7 @@ vec4 applyScanLines(vec4 color, vec2 coord, float number, float amount, float po
 // @param scale scale of vignette outer ellipse (1 = darkest at ellipse incribing view)
 // @param power bias vignette fade towards edges of ellipse (>= 1)
 // @return resultant color with vignette applied
-vec4 applyVignette(vec4 color, vec2 sourceCoord, float amount, float scale, float power)
-{
+vec4 applyVignette(vec4 color, vec2 sourceCoord, float amount, float scale, float power) {
   float centerDist = getCenterDistance(sourceCoord);
 
   // Get amount to darken current fragment by scaled distance from center
