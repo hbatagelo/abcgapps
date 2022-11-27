@@ -65512,11 +65512,6 @@ Name: Stanford Bunny
 Author: Stanford University Computer Graphics Laboratory
 License: Stanford Scan (http://www.graphics.stanford.edu/data/3Dscanrep/)
 
-Files: maps/ancient_greece_vase.jpg
-Name: Ancient Greece Vase - Seamless Pattern
-Author: Patrick Hoesly from Kansas City, USA
-License: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/)
-
 Files: roman_lamp*, maps/roman_lamp*
 Name: Lamp, Roman
 Author: The British Museum (https://sketchfab.com/britishmuseum)
@@ -65526,12 +65521,6 @@ Files: teapot.obj
 Name: Utah Teapot
 Author: Martin Newell
 License: CC0 (https://creativecommons.org/share-your-work/public-domain/cc0/)
-
-Files: viking_room*, maps/viking_room.jpg
-Name: Viking room
-Author: nigelgoh (https://sketchfab.com/nigelgoh)
-License: CC BY 4.0 (http://creativecommons.org/licenses/by/4.0/)
-
 ÿØÿà JFIF     ÿá3zExif  II*                b       j   (       1    r   2    €   i‡    ”   ¦               GIMP 2.10.24  2021:04:10 16:11:44                                                                   _2         ÿØÿà JFIF      ÿÛ C 		
  $.' ",#(7),01444'9=82<.342ÿÛ C			2!!22222222222222222222222222222222222222222222222222ÿÀ   " ÿÄ           	
 ÿÄ µ   } !1AQa"q2‘¡#B±ÁRÑð$3br‚	
@@ -94137,7 +94126,7 @@ void main() {
   if (mappingMode == 0) {
     // Triplanar mapping
 
-    // A offset to center the texture around the origin
+    // An offset to center the texture around the origin
     vec3 offset = vec3(-0.5, -0.5, -0.5);
 
     // Sample with x planar mapping
@@ -94406,16 +94395,19 @@ void main() {
   if (mappingMode == 0) {
     // Triplanar mapping
 
+    // An offset to center the texture around the origin
+    vec3 offset = vec3(-0.5, -0.5, -0.5);
+
     // Sample with x planar mapping
-    vec2 texCoord1 = PlanarMappingX(fragPObj);
+    vec2 texCoord1 = PlanarMappingX(fragPObj + offset);
     vec4 color1 = BlinnPhong(fragN, fragL, fragV, texCoord1);
 
     // Sample with y planar mapping
-    vec2 texCoord2 = PlanarMappingY(fragPObj);
+    vec2 texCoord2 = PlanarMappingY(fragPObj + offset);
     vec4 color2 = BlinnPhong(fragN, fragL, fragV, texCoord2);
 
     // Sample with z planar mapping
-    vec2 texCoord3 = PlanarMappingZ(fragPObj);
+    vec2 texCoord3 = PlanarMappingZ(fragPObj + offset);
     vec4 color3 = BlinnPhong(fragN, fragL, fragV, texCoord3);
 
     // Compute average based on normal
